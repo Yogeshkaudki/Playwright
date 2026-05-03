@@ -1,0 +1,32 @@
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  await page.goto('https://learn-staging.brightchamps.com/book-trial-class?courseId=1');
+  await page.getByText('Coding for Kids').click();
+  await page.getByRole('img', { name: 'star', exact: true }).click();
+  const page1Promise = page.waitForEvent('popup');
+  await page.getByRole('link', { name: 'BrightCHAMPS platform (web' }).click();
+  const page1 = await page1Promise;
+  await page.getByRole('img', { name: 'harvard' }).click();
+  await page.getByRole('img', { name: 'Financial Literacy' }).click();
+  await page.getByRole('spinbutton', { name: 'Mobile Number' }).click();
+  await page.getByRole('spinbutton', { name: 'Mobile Number' }).fill('9148570627');
+  await page.getByRole('radio', { name: 'Grade 1', exact: true }).check();
+  await page.getByRole('button', { name: 'calender icon Book a Free' }).click();
+  await page.locator('#date-1').nth(1).check();
+  await page.getByRole('radio', { name: '1:00 PM', exact: true }).check();
+  await page.getByRole('button', { name: 'Confirm Class Time' }).click();
+  await page.getByRole('textbox', { name: 'Child\'s Name' }).click();
+  await page.getByRole('textbox', { name: 'Child\'s Name' }).fill('Test');
+  await page.getByRole('textbox', { name: 'Parent\'s Name' }).click();
+  await page.getByRole('textbox', { name: 'Parent\'s Name' }).fill('Parent');
+  await page.getByRole('textbox', { name: 'Email ID Email ID' }).click();
+  await page.getByRole('textbox', { name: 'Email ID Email ID' }).fill('test@gmail.com');
+  await page.getByRole('button', { name: 'Confirm Booking' }).click();
+  await page.getByRole('radio', { name: 'Parent' }).check();
+  await page.getByRole('radio', { name: 'Want to buy course Just want' }).check();
+  await page.getByRole('radio', { name: 'After the demo' }).check();
+  await page.getByRole('button', { name: 'calender icon Submit' }).click();
+  await page.getByRole('img', { name: 'cal' }).click();
+  await page.getByText(':00 PM - 02:00 PM').first().click();
+});
